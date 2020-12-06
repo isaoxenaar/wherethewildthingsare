@@ -9,7 +9,6 @@ class App extends Component {
     return (
       <Provider store={store}>
         <main>
-          this is for stein, the npi
           <Exe1 />
           <Exe2 />
         </main>

@@ -1,13 +1,46 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import styled from "styled-components";
 import { fetchExpeditions } from "../actions/exe1Action";
 
+const white = "#FFFFFF";
+const grey = "#110A3F";
+
+const BooleanButton = styled.div`
+all: unset;
+width: 25%;
+margin-bottom: 3rem;
+margin: auto;
+padding: 1rem;
+display: flex;
+justify-content: center;
+align-items: center;
+background-color: ${grey};
+text-align: center;
+font-size: 24px;
+font-family: "Times New Roman";
+color: ${white};
+border-radius: 4px;
+cursor: pointer;
+&:hover {
+  color: ${grey};
+  background-color: ${white};
+`;
+
 class Exe1 extends Component {
+  state = {
+    showList: true,
+  };
+
   componentDidMount() {
     this.props.dispatch(fetchExpeditions);
   }
 
   render() {
+    const listButtonText = this.state.showList
+      ? "Hide Expeditions"
+      : "Show Expeditions";
+
     const data = this.props.expeditions.list;
 
     const removeDuplicates = (array) => {
@@ -34,12 +67,28 @@ class Exe1 extends Component {
 
     const display = sorted.map((e, i) => {
       return (
-        <li id={i}>
-          {e.expedition} {e.utc_date} {e.programs} {e.conveyance}
-        </li>
+        <p id={i}>
+          {i + 1} expedition:{e.expedition} date:{e.utc_date} programs:
+          {e.programs} conveyance:{e.conveyance}
+        </p>
       );
     });
-    return <div>{display}</div>;
+    return (
+      <div>
+        <BooleanButton
+          onClick={() => {
+            this.setState({ showList: !this.state.showList });
+          }}
+        >
+          {listButtonText}
+        </BooleanButton>
+        {this.state.showList && (
+          <div>
+            <h4>{display}</h4>
+          </div>
+        )}
+      </div>
+    );
   }
 }
 
