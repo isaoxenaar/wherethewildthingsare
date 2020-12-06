@@ -19,7 +19,7 @@ class Exe2 extends Component {
     console.log("data", this.state.data);
     return (
       <div>
-        <Highstock />
+        <Highstock data15={this.state.data} />
       </div>
     );
   }

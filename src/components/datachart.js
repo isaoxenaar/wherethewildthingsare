@@ -18,6 +18,7 @@ class HighStock extends Component {
   }
 
   render() {
+    console.log("data in chart", this.props.data15);
     const options = {
       title: {
         text: "Ground Temprature in Permafrost, Janssonhaugen",
