@@ -12,7 +12,9 @@ class Exe2 extends Component {
       `https://api.npolar.no/indicator/timeseries/?facets=label.en&q=&filter-systems=mosj.no&filter-authors.@id=met.no&filter-keywords.@value=land&filter-locations.placename=Janssonhaugen&filter-label.en=${nr}+m&format=json&variant=array&limit=1b`
     );
     const json = await response.json();
-    this.setState({ data: json[0].data });
+    const number = nr;
+    this.state[number] = json[0].data;
+    this.setState({ data: "hello world" });
     console.log(nr, json);
   }
 
@@ -23,10 +25,10 @@ class Exe2 extends Component {
   }
 
   render() {
-    console.log("data", this.state.data);
+    console.log("15", this.state);
     return (
       <div>
-        <Highstock data15={this.state.data} />
+        <Highstock data={this.state} />
       </div>
     );
   }

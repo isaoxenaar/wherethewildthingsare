@@ -1,24 +1,10 @@
 import React, { Component } from "react";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
-import axios from "axios";
 
 class HighStock extends Component {
-  constructor() {
-    super();
-    this.state = {
-      data: [],
-    };
-  }
-  //   async componentDidMount() {
-  //     let res = await axios.get("");
-  //     let data = res.data;
-  //     data = data.map((el) => [el[0] * 1000, el[1]]);
-  //     this.setState({ data });
-  //   }
-
   render() {
-    console.log("data in chart", this.props.data15);
+    console.log("data in chart", this.props.data);
     const options = {
       title: {
         text: "Ground Temprature in Permafrost, Janssonhaugen",
