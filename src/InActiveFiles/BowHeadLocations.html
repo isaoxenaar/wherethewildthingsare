@@ -1,0 +1,161 @@
+
+<!DOCTYPE html>
+<meta charset="utf-8">
+<head>
+  <title>Geo shapes</title>
+</head>
+
+<style>
+body {
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  font-size: 30px;
+  color: rgb(0, 112, 163);
+}
+</style>
+
+<body>
+  <div id="content">
+    <canvas width="800" height="500"></canvas>
+  </div>
+  <script type="text/javascript" src="csvjson.json"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.2/d3.min.js"></script>
+
+  <script>
+
+// function findCoordinates(json) {
+// const whale1 = json.filter((w) => {
+// console.log(w.Ind);
+//  return w.Ind === 168446;
+//  });
+// console.log(whale1);
+// const coordinatesWhale1 = whale1.map((w) => {
+// const coordinate = [w.Lon, w.Lat];
+//    console.log(coordinate);
+//   return coordinate; });
+// console.log(coordinatesWhale1);
+// update(coordinatesWhale1)
+// }
+
+var context = d3.select('#content canvas')
+  .node()
+  .getContext('2d');
+
+var projection = d3.geoOrthographic()
+  .scale(1200)
+  .rotate([-68, -48, -16])
+  .center([-36, 89])
+  .translate([428, -10])
+
+var geoGenerator = d3.geoPath()
+  .projection(projection)
+  .context(context);
+
+function update(geojson) {
+  context.lineWidth = 1.5;
+  context.strokeStyle = '#4D432E';
+
+  context.beginPath();
+  geoGenerator({type: 'FeatureCollection', features: geojson.features})
+  context.stroke();
+
+  var graticule = d3.geoGraticule();
+  context.beginPath();
+  context.strokeStyle = '#A08C63';
+  geoGenerator(graticule());
+  context.stroke();
+
+  context.beginPath();
+  context.strokeStyle = '#00870C';
+  geoGenerator({type: 'Feature', geometry: {type: 'LineString', coordinates: [
+    [ -4.370466667, 77.32176667 ],
+    [ -4.148383333, 77.64765 ],
+    [ -3.987133333, 77.6051 ],
+    [ -3.982583333, 77.60523333 ],
+    [ -4.122, 77.63981667 ],
+    [ -3.968766667, 77.61766667 ],
+    [ -3.953416667, 77.61556667 ],
+    [ -3.8749, 77.62106667 ],
+    [ -4.066183333, 77.64011667 ],
+    [ -3.650083333, 77.52733333 ],
+    [ -3.627066667, 77.54273333 ],
+    [ -3.63835, 77.55481667 ],
+    [ -3.63275, 77.54778333 ],
+    [ -3.635933333, 77.57845 ],
+    [ -3.6362, 77.57843333 ],
+    [ -3.587383333, 77.5785 ],
+    [ -3.622716667, 77.57936667 ],
+    [ -3.552766667, 77.53908333 ],
+    [ -3.7876, 77.68405 ],
+    [ -3.630883333, 77.72586667 ],
+    [ -3.455533333, 77.63595 ],
+    [ -3.4912, 77.64626667 ],
+    [ -3.5379, 77.67265 ],
+    [ -3.480616667, 77.76065 ],
+    [ -3.493633333, 77.76583333 ],
+    [ -3.415116667, 77.75108333 ],
+    [ -3.439433333, 77.76498333 ],
+    [ -3.698316667, 77.81383333 ],
+    [ -3.701433333, 77.81488333 ],
+    [ -3.64795, 77.79896667 ],
+    [ -3.603783333, 77.7962 ],
+    [ -3.603566667, 77.79603333 ],
+    [ -3.782233333, 77.84478333 ],
+    [ -3.9957, 77.91241667 ],
+    [ -3.803866667, 77.84183333 ],
+    [ -3.832566667, 77.87355 ],
+    [ -3.778333333, 77.79456667 ],
+    [ -3.803066667, 77.87063333 ],
+    [ -3.721716667, 77.86106667 ],
+    [ -3.5069, 77.86206667 ],
+    [ -3.809633333, 77.96555 ],
+    [ -3.648566667, 78.19331667 ],
+    [ -3.583366667, 78.14076667 ],
+    [ -3.539966667, 78.1321 ],
+    [ -3.541233333, 78.13461667 ],
+    [ -3.604716667, 78.1463 ],
+    [ -3.616366667, 78.12243333 ],
+    [ -3.347816667, 78.11036667 ],
+    [ -3.452283333, 78.10233333 ],
+    [ -3.553916667, 78.12461667 ],
+    [ -3.593816667, 78.13111667 ],
+    [ -3.5959, 78.12888333 ],
+    [ -3.226966667, 78.15443333 ],
+    [ -3.469383333, 78.09536667 ],
+    [ -3.366916667, 78.12311667 ],
+    [ -3.380933333, 78.11446667 ],
+    [ -3.322016667, 78.12756667 ],
+    [ -3.401633333, 78.16468333 ],
+    [ -3.402133333, 78.16466667 ],
+    [ -3.209883333, 78.15391667 ],
+    [ -3.45745, 78.1809 ],
+    [ -3.530266667, 78.17086667 ],
+    [ -3.508383333, 78.18936667 ],
+    [ -3.474466667, 78.18928333 ],
+    [ -3.4419, 78.19191667 ],
+    [ -3.53065, 78.20178333 ],
+    [ -3.460633333, 78.19441667 ],
+    [ -3.494483333, 78.2237 ],
+    [ -3.462716667, 78.21688333 ],
+    [ -3.480966667, 78.22273333 ],
+    [ -3.4972, 78.21653333 ],
+    [ -3.532833333, 78.21333333 ],
+    [ -3.461416667, 78.21883333 ],
+    [ -3.501783333, 78.55086667 ],
+    [ -3.384083333, 78.48508333 ]
+  ]}});
+  context.stroke();
+
+  var circle = d3.geoCircle().center([-3.384083333, 78.48508333]).radius(5)
+  context.beginPath();
+  context.strokeStyle = '#007A74';
+  geoGenerator(circle());
+  context.stroke();
+}
+
+d3.json('https://gist.githubusercontent.com/d3indepth/f28e1c3a99ea6d84986f35ac8646fac7/raw/c58cede8dab4673c91a3db702d50f7447b373d98/ne_110m_land.json', function(err, json) {
+//findCoordinates(json)
+update(json)
+})
+</script>
+</body>
+</html>

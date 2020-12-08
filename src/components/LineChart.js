@@ -3,7 +3,15 @@ import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 
 class HighStock extends Component {
+  state = {
+    data: this.props.data[15],
+  };
+
   render() {
+    // const when = this.state.data.map((v) => {
+    //   return v.when;
+    // });
+
     const options = {
       title: {
         text: "Ground Temprature in Permafrost, Janssonhaugen",

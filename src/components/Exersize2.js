@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import Highstock from "./datachart";
+import Highstock from "./LineChart";
+import Barchart from "./BarChart";
 
 class Exe2 extends Component {
   constructor() {
@@ -12,7 +13,7 @@ class Exe2 extends Component {
       `https://api.npolar.no/indicator/timeseries/?facets=label.en&q=&filter-systems=mosj.no&filter-authors.@id=met.no&filter-keywords.@value=land&filter-locations.placename=Janssonhaugen&filter-label.en=${nr}+m&format=json&variant=array&limit=1b`
     );
     const json = await response.json();
-    const number = nr;
+    const number = nr.toString();
     this.state[number] = json[0].data;
   }
 
@@ -24,9 +25,11 @@ class Exe2 extends Component {
 
   render() {
     console.log("15", this.state);
+
     return (
       <div>
         <Highstock data={this.state} />
+        <Barchart />
       </div>
     );
   }
