@@ -4,7 +4,6 @@ import HighchartsReact from "highcharts-react-official";
 
 class HighStock extends Component {
   render() {
-    console.log("data in chart", this.props.data);
     const options = {
       title: {
         text: "Ground Temprature in Permafrost, Janssonhaugen",

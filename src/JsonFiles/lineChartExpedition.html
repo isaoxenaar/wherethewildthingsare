@@ -18,29 +18,19 @@
       var h = 800;
       var padding = 40;
 
-      var dataset, xScale, yScale, xAxis, yAxis, line; //Empty, for now
-
-      //For converting Dates to strings
+      var dataset, xScale, yScale, xAxis, yAxis, line;
       var formatTime = d3.timeFormat("%Y");
 
-      //Function for converting CSV values from strings to Dates and numbers
       var rowConverter = function (d) {
         return {
-          when: new Date(d.when), //Make a new Date object for each year + month
-          value: parseFloat(d.value), //Convert from string to float
+          when: new Date(d.when),
+          value: parseFloat(d.value),
         };
       };
 
-      //Load in data
       d3.csv("15Meter.csv", rowConverter, function (data) {
         var dataset = data;
 
-        console.log("csv format", data, data[1].when, data[1].value);
-
-        //Print data to console as table, for verification
-        console.table(dataset, ["when", "value"]);
-
-        //Create scale functions
         xScale = d3
           .scaleTime()
           .domain([
@@ -63,13 +53,10 @@
           ])
           .range([h - padding, 0]);
 
-        //Define axes
         xAxis = d3.axisBottom().scale(xScale).ticks(10).tickFormat(formatTime);
 
-        //Define Y axis
         yAxis = d3.axisLeft().scale(yScale).ticks(10);
 
-        //Define line generator
         line = d3
           .line()
           .x(function (d) {
@@ -79,17 +66,14 @@
             return yScale(d.value);
           });
 
-        //Create SVG element
         var svg = d3
           .select("body")
           .append("svg")
           .attr("width", w)
           .attr("height", h);
 
-        //Create line
         svg.append("path").datum(dataset).attr("class", "line").attr("d", line);
 
-        //Create axes
         svg
           .append("g")
           .attr("class", "axis")

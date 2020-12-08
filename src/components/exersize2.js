@@ -14,8 +14,6 @@ class Exe2 extends Component {
     const json = await response.json();
     const number = nr;
     this.state[number] = json[0].data;
-    this.setState({ data: "hello world" });
-    console.log(nr, json);
   }
 
   componentDidMount() {
