@@ -98,15 +98,16 @@ class DataChart extends Component {
   }
 
   render() {
-    //return <div id={"#" + this.props.id}></div>;
     return (
-      <div id="tooltip" class="hidden">
-        <p>
-          <strong>number of breeding ivory gulls</strong>
-        </p>
-        <p>
-          <span id="value">100</span>
-        </p>
+      <div id={"#" + this.props.id}>
+        <div id="tooltip" class="hidden">
+          <p>
+            <strong>number of breeding ivory gulls</strong>
+          </p>
+          <p>
+            <span id="value">100</span>
+          </p>
+        </div>
       </div>
     );
   }

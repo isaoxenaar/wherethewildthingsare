@@ -9,9 +9,8 @@ class App extends Component {
     return (
       <Provider store={store}>
         <main>
-          <Exe2 />
-
           <Exe1 />
+          <Exe2 />
         </main>
       </Provider>
     );
