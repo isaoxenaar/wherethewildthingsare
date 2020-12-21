@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
 import { fetchExpeditions } from "../actions/exe1Action";
+//add the date ordered.
 
 const white = "#FFFFFF";
 const grey = "#110A3F";

@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
+require("highcharts/modules/boost")(Highcharts);
 
-class LineChart extends Component {
+class LineChart2 extends Component {
   render() {
     const data = this.props.data.data;
     const when = data.map((v) => {
@@ -15,64 +16,74 @@ class LineChart extends Component {
         return v.value;
       });
     });
-    console.log("when", when[15]);
+    const dates = when[15];
+
+    console.log("when", dates);
     console.log("depth", depth);
+    console.time("line");
 
     const options = {
+      chart: {
+        zoomType: "x",
+        panning: true,
+        panKey: "shift",
+        borderColor: "#f5f5dc",
+        plotBorderWidth: "5px",
+        plotBorderColor: "#f5f5dc",
+        backgroundColor: "#B7A570",
+        plotShadow: true,
+      },
+      boost: {
+        useGPUTranslations: true,
+        enabled: true,
+        seriesThreshold: 1,
+      },
       title: {
-        text: "Ground Temprature in Permafrost, Janssonhaugen",
+        text: "Highcharts drawing points",
       },
       subtitle: {
-        text: "try-out graph",
+        text: "Using the Boost module",
+      },
+      plotOptions: {
+        series: {
+          lineWidth: "1000px",
+        },
       },
       xAxis: {
-        categories: ["1", "2", "4"],
+        categories: dates,
+        text: "white",
       },
       yAxis: {
         title: {
           text: "Temperature (\xB0C)",
+          color: "white",
         },
         plotLines: [
           {
             value: 0,
-            width: 1,
-            color: "#808080",
+            color: "#c2c2ae",
           },
         ],
       },
-      tooltip: {
-        valueSuffix: "\xB0C",
-      },
-      legend: {
-        layout: "vertical",
-        align: "right",
-        verticalAlign: "middle",
-        borderWidth: 0,
-      },
+      colors: ["#ff6347", "#FF6600", "#FFC300"],
       series: [
         {
-          name: "15m",
-          data: [
-            7.0,
-            6.9,
-            9.5,
-            14.5,
-            18.2,
-            21.5,
-            25.2,
-            26.5,
-            23.3,
-            18.3,
-            13.9,
-            9.6,
-          ],
+          boostTreshold: 1,
+          data: depth[15],
+          lineWidth: 1,
+        },
+        {
+          data: depth[25],
+          lineWidth: 5,
+        },
+        {
+          boostTreshold: 1,
+          data: depth[40],
+          lineWidth: 1,
         },
       ],
-      chart: {
-        type: "line",
-        styledMode: true,
-      },
     };
+    console.timeEnd("line");
 
     if (!this.props) {
       return <h1>loading</h1>;
@@ -98,4 +109,4 @@ class LineChart extends Component {
     }
   }
 }
-export default LineChart;
+export default LineChart2;
