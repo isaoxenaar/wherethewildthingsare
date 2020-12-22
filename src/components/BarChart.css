@@ -3,7 +3,7 @@ rect:hover {
 }
 
 #tooltip {
-  position: absolute;
+  position: relative;
   width: 200px;
   height: auto;
   padding: 10px;

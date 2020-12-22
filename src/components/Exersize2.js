@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import LineChart from "./LineChart";
 import LineChart2 from "./LineChart2";
-import Barchart from "./BarChart";
 
 class Exe2 extends Component {
   constructor() {
@@ -32,7 +30,6 @@ class Exe2 extends Component {
       return (
         <div>
           <LineChart2 data={this.state} />
-          <Barchart />
         </div>
       );
     }

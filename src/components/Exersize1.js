@@ -2,10 +2,9 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
 import { fetchExpeditions } from "../actions/exe1Action";
-//add the date ordered.
 
 const white = "#FFFFFF";
-const grey = "#110A3F";
+const grey = "#B0A175";
 
 const BooleanButton = styled.div`
 all: unset;
@@ -63,14 +62,53 @@ class Exe1 extends Component {
       var dateB = new Date(b.utc_date);
       return dateA - dateB;
     });
-    const ndJson = sorted.map(JSON.stringify).join("\n");
-    console.log(ndJson);
 
-    const display = sorted.map((e, i) => {
+    const twoDates = sorted.map((exp) => {
+      const allExps = data.filter((e) => {
+        return e.expedition === exp.expedition;
+      });
+      const max = new Date(
+        Math.max(...allExps.map((e) => new Date(e.utc_date)))
+      );
+      const min = new Date(
+        Math.min(...allExps.map((e) => new Date(e.utc_date)))
+      );
+      const min1 = min.toString();
+      const max1 = max.toString();
+      console.log("is this all", min1, max1);
+
+      const dateAdded = {
+        expedition: exp.expedition,
+        conveyance: exp.conveyance,
+        programs: exp.programs,
+        date_start: min1,
+        date_end: max1,
+      };
+      console.log("this is new object", dateAdded);
+      return dateAdded;
+    });
+
+    const ndJson = twoDates.map(JSON.stringify).join("\n");
+    console.log("two dates", twoDates);
+
+    const display = twoDates.map((e, i) => {
       return (
         <p id={i}>
-          {i + 1} expedition:{e.expedition} date:{e.utc_date} programs:
-          {e.programs} conveyance:{e.conveyance}
+          {i + 1}. <span style={{ color: "#B0A175" }}>expedition: </span>
+          {e.expedition}
+          <br />
+          <span style={{ color: "#B0A175" }}>conveyance: </span>
+          {e.conveyance}
+          <br />
+          <span style={{ color: "#B0A175" }}>programs: </span>
+          {e.programs}
+          <br />
+          <span style={{ color: "#B0A175" }}>date start: </span>
+          {e.date_start}
+          <br />
+          <span style={{ color: "#B0A175" }}>date end: </span>
+          {e.date_end}
+          <br />
         </p>
       );
     });

@@ -11,16 +11,11 @@ let requests = numbers.map((nr) =>
 
 Promise.all(requests)
   .then((responses) => {
-    // all responses are resolved successfully
     for (let response of responses) {
-      alert(`${response.url}: ${response.status}`); // shows 200 for every url
+      alert(`${response.url}: ${response.status}`);
     }
 
     return responses;
   })
-  // map array of responses into an array of response.json() to read their content
   .then((responses) => Promise.all(responses.map((r) => r.json())))
-  // all JSON answers are parsed: "users" is the array of them
   .then((depths) => depths.forEach((depth) => console.log(depth)));
-
-//.then((depths) => depths.forEach((depth) => alert(depth)));

@@ -30,7 +30,7 @@ class LineChart2 extends Component {
         borderColor: "#f5f5dc",
         plotBorderWidth: "5px",
         plotBorderColor: "#f5f5dc",
-        backgroundColor: "#B7A570",
+        backgroundColor: "#B0A175",
         plotShadow: true,
       },
       boost: {

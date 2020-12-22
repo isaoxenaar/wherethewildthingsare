@@ -104,10 +104,24 @@ class DataChart extends Component {
           <p>
             <strong>number of breeding ivory gulls</strong>
           </p>
-          <p>
-            <span id="value">100</span>
-          </p>
+          <p></p>
         </div>
+        {/* <img
+          src="https://cdn.download.ams.birds.cornell.edu/api/v1/asset/55025061/1800"
+          alt="notfound"
+        />
+        <div id="title">
+          The number of breeding pairs of Ivory gulls on Svalbard from 2009 to
+          2019.
+        </div>
+        <p>
+          Development of the ivory gull population in 32 selected colonies,
+          stated as a percentage of the average for the entire monitoring
+          period. Monitoring of ivory gulls in Svalbard shows a decline in the
+          breeding population of approximately 3% per year. The decline is seen
+          in the context of the decline in the species' primary habitat – sea
+          ice.
+        </p> */}
       </div>
     );
   }
