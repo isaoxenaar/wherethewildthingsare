@@ -12,6 +12,7 @@
     "highcharts": "^8.2.2",
     "highcharts-boost": "^0.1.7",
     "highcharts-react-official": "^3.0.0",
+    "leaflet": "^1.7.1",
     "node-fetch": "^2.6.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
