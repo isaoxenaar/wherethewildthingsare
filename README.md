@@ -1,8 +1,7 @@
-This app is an assignment for the North Polar Institute.
+This app is made with React and can be build as a React App and run on localhost after pulling it from github.
 
-It is made with React and can be build as a React App and run on localhost after pulling it from github.
-
-On "{nameof page}" the elements functioning in React are visible. The Exersize 1 and Exersize 2 of the assignment are there. I as well created some extra elements:
+On "{nameof page}" the elements functioning in React are visible.
+The Exersize 1 and Exersize 2 of the assignment are there. I as well created some extra elements:
 
 - a D3 version of the Permafrost Line Chart
 - an interactive Bar Chart of Ivory Gulls made with D3
@@ -19,7 +18,9 @@ This goes as follows:
 
 There you can see the functioning D3 visualizations.
 
-With doing this assignment I had many firsts!
+The goal of this app is to learn Data Visualization by doing new things.
+
+These are the firsts so far.
 
 1. I have learned to use Highcharts for the first time.
 2. I have worked with Leaflet/ GeoJson for the first time.
