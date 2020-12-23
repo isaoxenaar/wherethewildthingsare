@@ -1,11 +1,39 @@
 import React, { Component } from "react";
+import styled from "styled-components";
+
 import * as d3 from "d3";
-import "./BarChart.css";
+import "./InActiveFiles/BarChart.css";
+
+const white = "#FFFFFF";
+const grey = "#B0A175";
+
+const BooleanButton = styled.div`
+all: unset;
+width: 25%;
+margin-bottom: 3rem;
+margin: auto;
+padding: 1rem;
+display: flex;
+justify-content: center;
+align-items: center;
+background-color: ${grey};
+text-align: center;
+font-size: 24px;
+font-family: "Times New Roman";
+color: ${white};
+border-radius: 4px;
+cursor: pointer;
+&:hover {
+  color: ${grey};
+  background-color: ${white};
+`;
 
 class DataChart extends Component {
-  componentDidMount() {
-    this.drawChart();
-  }
+  state = {
+    showList: true,
+  };
+
+  componentDidMount() {}
 
   drawChart() {
     var w = 600;
@@ -98,30 +126,44 @@ class DataChart extends Component {
   }
 
   render() {
+    const listButtonText = this.state.showList ? "Hide" : "Expeditions";
+    this.drawChart();
+
     return (
-      <div id={"#" + this.props.id}>
-        <div id="tooltip" class="hidden">
-          <p>
-            <strong>number of breeding ivory gulls</strong>
-          </p>
-          <p></p>
-        </div>
-        {/* <img
-          src="https://cdn.download.ams.birds.cornell.edu/api/v1/asset/55025061/1800"
-          alt="notfound"
-        />
-        <div id="title">
-          The number of breeding pairs of Ivory gulls on Svalbard from 2009 to
-          2019.
-        </div>
-        <p>
-          Development of the ivory gull population in 32 selected colonies,
-          stated as a percentage of the average for the entire monitoring
-          period. Monitoring of ivory gulls in Svalbard shows a decline in the
-          breeding population of approximately 3% per year. The decline is seen
-          in the context of the decline in the species' primary habitat – sea
-          ice.
-        </p> */}
+      <div>
+        <BooleanButton
+          onClick={() => {
+            this.setState({ showList: !this.state.showList });
+          }}
+        >
+          {listButtonText}
+        </BooleanButton>
+        {this.state.showList && (
+          <div id={"#" + this.props.id}>
+            <div id="tooltip" class="hidden">
+              <p>
+                <strong>number of breeding ivory gulls</strong>
+              </p>
+              <p></p>
+            </div>
+            {/* <img
+         src="https://cdn.download.ams.birds.cornell.edu/api/v1/asset/55025061/1800"
+         alt="notfound"
+       />
+       <div id="title">
+         The number of breeding pairs of Ivory gulls on Svalbard from 2009 to
+         2019.
+       </div>
+       <p>
+         Development of the ivory gull population in 32 selected colonies,
+         stated as a percentage of the average for the entire monitoring
+         period. Monitoring of ivory gulls in Svalbard shows a decline in the
+         breeding population of approximately 3% per year. The decline is seen
+         in the context of the decline in the species' primary habitat – sea
+         ice.
+       </p> */}
+          </div>
+        )}
       </div>
     );
   }

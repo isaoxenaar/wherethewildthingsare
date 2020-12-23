@@ -1,11 +1,36 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import LineChart2 from "./LineChart2";
+import styled from "styled-components";
+import LineChart2 from "./LineHighChart";
+
+const white = "#FFFFFF";
+const grey = "#B0A175";
+
+const BooleanButton = styled.div`
+all: unset;
+width: 25%;
+margin-bottom: 3rem;
+margin: auto;
+padding: 1rem;
+display: flex;
+justify-content: center;
+align-items: center;
+background-color: ${grey};
+text-align: center;
+font-size: 24px;
+font-family: "Times New Roman";
+color: ${white};
+border-radius: 4px;
+cursor: pointer;
+&:hover {
+  color: ${grey};
+  background-color: ${white};
+`;
 
 class Exe2 extends Component {
   constructor() {
     super();
-    this.state = { data: [], loading: true };
+    this.state = { data: [], loading: true, showList: true };
   }
 
   componentDidMount() {
@@ -24,12 +49,26 @@ class Exe2 extends Component {
   }
 
   render() {
+    const listButtonText = this.state.showList
+      ? "Hide"
+      : "Permafrost, Highcharts";
     if (this.state.loading) {
       return <p>loading</p>;
     } else {
       return (
         <div>
-          <LineChart2 data={this.state} />
+          <BooleanButton
+            onClick={() => {
+              this.setState({ showList: !this.state.showList });
+            }}
+          >
+            {listButtonText}
+          </BooleanButton>
+          {this.state.showList && (
+            <div>
+              <LineChart2 data={this.state} />
+            </div>
+          )}
         </div>
       );
     }

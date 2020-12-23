@@ -37,9 +37,7 @@ class Exe1 extends Component {
   }
 
   render() {
-    const listButtonText = this.state.showList
-      ? "Hide Expeditions"
-      : "Show Expeditions";
+    const listButtonText = this.state.showList ? "Hide" : "Expeditions";
 
     const data = this.props.expeditions.list;
 
