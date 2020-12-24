@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import styled from "styled-components";
 
 import * as d3 from "d3";
-import "./InActiveFiles/BarChart.css";
+import "../References/BarChart.css";
 
 const white = "#FFFFFF";
 const grey = "#B0A175";
