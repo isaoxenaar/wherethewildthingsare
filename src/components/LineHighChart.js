@@ -5,23 +5,24 @@ require("highcharts/modules/boost")(Highcharts);
 
 class LineChart2 extends Component {
   render() {
+    //prepare data
     const data = this.props.data.data;
+
     const when = data.map((v) => {
       return v.map((v) => {
         return v.when;
       });
     });
+
     const depth = data.map((v) => {
       return v.map((v) => {
         return v.value;
       });
     });
+
     const dates = when[15];
 
-    console.log("when", dates);
-    console.log("depth", depth);
-    console.time("line");
-
+    //prepare chart
     const options = {
       chart: {
         zoomType: "x",
@@ -83,8 +84,8 @@ class LineChart2 extends Component {
         },
       ],
     };
-    console.timeEnd("line");
 
+    //the big return statement
     if (!this.props) {
       return <h1>loading</h1>;
     } else {

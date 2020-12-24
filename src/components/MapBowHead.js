@@ -1,17 +1,41 @@
 import React, { Component } from "react";
-import {
-  MapContainer,
-  Marker,
-  Popup,
-  TileLayer,
-  GeoJSON,
-  Polyline,
-} from "react-leaflet";
+import styled from "styled-components";
+import L from "leaflet";
+import { MapContainer, Marker, Popup, TileLayer, GeoJSON } from "react-leaflet";
 import { data } from "../D3_Html_Charts/rawdata";
 import "../App.css";
 
+const white = "#FFFFFF";
+const grey = "#B0A175";
+
+const BooleanButton = styled.div`
+all: unset;
+width: 25%;
+margin-bottom: 3rem;
+margin: auto;
+padding: 1rem;
+display: flex;
+justify-content: center;
+align-items: center;
+background-color: ${grey};
+text-align: center;
+font-size: 24px;
+font-family: "Times New Roman";
+color: ${white};
+border-radius: 4px;
+cursor: pointer;
+&:hover {
+  color: ${grey};
+  background-color: ${white};
+`;
+
 class MapBowHead extends Component {
+  state = {
+    showList: false,
+  };
+
   render() {
+    //create a geojson from rawdata
     const uniqueWhales = (array) => {
       const double = {};
       const unique = [];
@@ -51,41 +75,70 @@ class MapBowHead extends Component {
       };
       return feature;
     });
-    console.log(allFeatures);
 
     const geoJSON = {
       type: "FeatureCollection",
       features: allFeatures,
     };
 
+    //create position for markers
     const position = [
       geoJSON.features[0].geometry.coordinates[0][1],
       geoJSON.features[0].geometry.coordinates[0][0],
     ];
+
+    const positionsMarkers = geoJSON.features.map((f) => {
+      const c = [f.geometry.coordinates[0][1], f.geometry.coordinates[0][0]];
+      const n = f.properties.name;
+      const b = [c, n];
+      return b;
+    });
+
+    //create list of markers
+    const markers = positionsMarkers.map((p, i) => {
+      const icon = L.icon({
+        iconUrl: "https://cdn2.webdamdb.com/1280_SMQqW23s1bNH.png?1509021505",
+        iconSize: [120, 80],
+      });
+      return (
+        <Marker key={i} position={p[0]} icon={icon}>
+          <Popup>
+            <b>Hej! I am whale {p[1]}</b>
+          </Popup>
+        </Marker>
+      );
+    });
+    //logic for the Buttontext
+    const listButtonText = this.state.showList ? "Hide" : "Bowhead Paths";
+    //the big return statement
     return (
-      <MapContainer center={position} zoom={6}>
-        <TileLayer
-          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-        <Marker
-          key={geoJSON.features[0].properties.name}
-          position={position}
-        ></Marker>
-        <Polyline
-          positions={geoJSON.features[0].geometry.coordinates}
-          color={geoJSON.features[0].properties.color}
-        ></Polyline>
-        <GeoJSON
-          data={geoJSON}
-          style={(feature) => {
-            return {
-              color: feature.properties.color,
-              weight: feature.properties.weight,
-            };
+      <div>
+        <BooleanButton
+          onClick={() => {
+            this.setState({ showList: !this.state.showList });
           }}
-        ></GeoJSON>
-      </MapContainer>
+        >
+          {listButtonText}
+        </BooleanButton>
+        {this.state.showList && (
+          <MapContainer center={position} zoom={5}>
+            <TileLayer
+              attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            />
+            <GeoJSON
+              data={geoJSON}
+              style={(feature) => {
+                return {
+                  color: feature.properties.color,
+                  weight: feature.properties.weight,
+                };
+              }}
+            ></GeoJSON>
+            {markers}
+          </MapContainer>
+        )}
+      </div>
     );
   }
 }

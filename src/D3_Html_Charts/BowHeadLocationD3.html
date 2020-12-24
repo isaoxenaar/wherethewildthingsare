@@ -4,7 +4,6 @@
 <head>
   <title>Geo shapes</title>
 </head>
-
 <style>
 body {
   font-family: "Helvetica Neue", Helvetica, sans-serif;
@@ -12,30 +11,15 @@ body {
   color: rgb(0, 112, 163);
 }
 </style>
-
 <body>
   <div id="content">
     <canvas width="800" height="500"></canvas>
   </div>
   <script type="text/javascript" src="csvjson.json"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.2/d3.min.js"></script>
-
   <script>
 
-// function findCoordinates(json) {
-// const whale1 = json.filter((w) => {
-// console.log(w.Ind);
-//  return w.Ind === 168446;
-//  });
-// console.log(whale1);
-// const coordinatesWhale1 = whale1.map((w) => {
-// const coordinate = [w.Lon, w.Lat];
-//    console.log(coordinate);
-//   return coordinate; });
-// console.log(coordinatesWhale1);
-// update(coordinatesWhale1)
-// }
-
+//Declare variables
 var context = d3.select('#content canvas')
   .node()
   .getContext('2d');
@@ -50,6 +34,7 @@ var geoGenerator = d3.geoPath()
   .projection(projection)
   .context(context);
 
+  //prepare the style for the line shown.
 function update(geojson) {
   context.lineWidth = 1.5;
   context.strokeStyle = '#4D432E';
@@ -64,6 +49,7 @@ function update(geojson) {
   geoGenerator(graticule());
   context.stroke();
 
+  //Use data, should be soft coded, working on that.
   context.beginPath();
   context.strokeStyle = '#00870C';
   geoGenerator({type: 'Feature', geometry: {type: 'LineString', coordinates: [
@@ -152,8 +138,8 @@ function update(geojson) {
   context.stroke();
 }
 
-d3.json('https://gist.githubusercontent.com/d3indepth/f28e1c3a99ea6d84986f35ac8646fac7/raw/c58cede8dab4673c91a3db702d50f7447b373d98/ne_110m_land.json', function(err, json) {
 //findCoordinates(json)
+d3.json('https://gist.githubusercontent.com/d3indepth/f28e1c3a99ea6d84986f35ac8646fac7/raw/c58cede8dab4673c91a3db702d50f7447b373d98/ne_110m_land.json', function(err, json) {
 update(json)
 })
 </script>

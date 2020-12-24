@@ -1,7 +1,7 @@
 import * as d3 from "https://unpkg.com/d3?module";
 
 async function drawLineChart() {
-  // write your code here
+  //fetch the three API, note: should make this into a map method.
   const data15 = await d3.json(
     "https://api.npolar.no/indicator/timeseries/?facets=label.en&q=&filter-systems=mosj.no&filter-authors.@id=met.no&filter-keywords.@value=land&filter-locations.placename=Janssonhaugen&filter-label.en=15+m&format=json&variant=array&limit=1b"
   );
@@ -11,7 +11,8 @@ async function drawLineChart() {
   const data40 = await d3.json(
     "https://api.npolar.no/indicator/timeseries/?facets=label.en&q=&filter-systems=mosj.no&filter-authors.@id=met.no&filter-keywords.@value=land&filter-locations.placename=Janssonhaugen&filter-label.en=40+m&format=json&variant=array&limit=1b"
   );
-  console.table(data25);
+
+  //declare and assign variables
   const dataset = data15[0].data;
   const dataset25 = data25[0].data;
   const dataset40 = data40[0].data;
@@ -47,15 +48,17 @@ async function drawLineChart() {
       `translate(${dimensions.margin.left}px, ${dimensions.margin.top}px)`
     );
 
-  // 4. Create scales
-
-  // 4. Create scales
-
   const yScale = d3
     .scaleLinear()
     .domain(d3.extent(dataset, yAccessor))
     .range([dimensions.boundedHeight, 0]);
 
+  const xScale = d3
+    .scaleTime()
+    .domain(d3.extent(dataset, xAccessor))
+    .range([0, dimensions.boundedWidth]);
+
+  //fill the chart op to -5 degrees (random choice)
   const freezingTemperaturePlacement = yScale(-5);
   const freezingTemperatures = bounds
     .append("rect")
@@ -65,13 +68,7 @@ async function drawLineChart() {
     .attr("height", dimensions.boundedHeight - freezingTemperaturePlacement)
     .attr("fill", "#f2e5d9");
 
-  const xScale = d3
-    .scaleTime()
-    .domain(d3.extent(dataset, xAccessor))
-    .range([0, dimensions.boundedWidth]);
-
-  // 5. Draw data
-
+  //draw the lines
   const lineGenerator = d3
     .line()
     .x((d) => xScale(xAccessor(d)))
@@ -98,6 +95,7 @@ async function drawLineChart() {
     .attr("stroke", "#003380")
     .attr("stroke-width", 3);
 
+  //draw the Axis
   const yAxisGenerator = d3.axisLeft().scale(yScale);
   const yAxis = bounds.append("g");
 

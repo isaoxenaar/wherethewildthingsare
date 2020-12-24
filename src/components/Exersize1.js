@@ -29,9 +29,10 @@ cursor: pointer;
 
 class Exe1 extends Component {
   state = {
-    showList: true,
+    showList: false,
   };
 
+  // I use redux-state just to show off ;)
   componentDidMount() {
     this.props.dispatch(fetchExpeditions);
   }
@@ -41,6 +42,7 @@ class Exe1 extends Component {
 
     const data = this.props.expeditions.list;
 
+    //find unique expeditions
     const removeDuplicates = (array) => {
       const double = {};
       const unique = [];
@@ -55,12 +57,14 @@ class Exe1 extends Component {
 
     const unique = removeDuplicates(data);
 
+    //sort by date
     const sorted = unique.sort(function compare(a, b) {
-      var dateA = new Date(a.utc_date);
-      var dateB = new Date(b.utc_date);
+      const dateA = new Date(a.utc_date);
+      const dateB = new Date(b.utc_date);
       return dateA - dateB;
     });
 
+    //find the first and last date, create a new object
     const twoDates = sorted.map((exp) => {
       const allExps = data.filter((e) => {
         return e.expedition === exp.expedition;
@@ -73,8 +77,6 @@ class Exe1 extends Component {
       );
       const min1 = min.toString();
       const max1 = max.toString();
-      console.log("is this all", min1, max1);
-
       const dateAdded = {
         expedition: exp.expedition,
         conveyance: exp.conveyance,
@@ -82,13 +84,14 @@ class Exe1 extends Component {
         date_start: min1,
         date_end: max1,
       };
-      console.log("this is new object", dateAdded);
       return dateAdded;
     });
 
+    //make a newline seperated JSON, that I don't use in the display.
     const ndJson = twoDates.map(JSON.stringify).join("\n");
-    console.log("two dates", twoDates);
+    console.log("newline seperated JSON", ndJson);
 
+    //Create the display
     const display = twoDates.map((e, i) => {
       return (
         <p id={i}>
@@ -110,6 +113,8 @@ class Exe1 extends Component {
         </p>
       );
     });
+
+    //the big return statement
     return (
       <div>
         <BooleanButton
@@ -129,6 +134,7 @@ class Exe1 extends Component {
   }
 }
 
+//using the reduxState, because I think ahead.
 function mapStateToProps(reduxState) {
   return {
     expeditions: reduxState.expeditions,

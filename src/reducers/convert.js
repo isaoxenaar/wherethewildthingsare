@@ -1,4 +1,4 @@
-const json = require("./csvjson.json");
+const json = require("./rawdata.js");
 
 const whale1 = json.filter((w) => {
   return w.Ind === 168446;

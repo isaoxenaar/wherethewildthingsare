@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
 import styled from "styled-components";
 import LineChart2 from "./LineHighChart";
 
@@ -30,9 +29,10 @@ cursor: pointer;
 class Exe2 extends Component {
   constructor() {
     super();
-    this.state = { data: [], loading: true, showList: true };
+    this.state = { data: [], loading: true, showList: false };
   }
 
+  // fetch data with promise function
   componentDidMount() {
     const fetchData = async (nr) => {
       const response = await fetch(
@@ -49,9 +49,8 @@ class Exe2 extends Component {
   }
 
   render() {
-    const listButtonText = this.state.showList
-      ? "Hide"
-      : "Permafrost, Highcharts";
+    const listButtonText = this.state.showList ? "Hide" : "Permafrost Chart";
+    // the big return statement
     if (this.state.loading) {
       return <p>loading</p>;
     } else {
@@ -75,10 +74,4 @@ class Exe2 extends Component {
   }
 }
 
-function mapStateToProps(reduxState) {
-  return {
-    expeditions: reduxState.expeditions,
-  };
-}
-
-export default connect(mapStateToProps)(Exe2);
+export default Exe2;

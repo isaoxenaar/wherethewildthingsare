@@ -64,8 +64,10 @@
       var w = 600;
       var h = 250;
 
+      //hard coded data because there were only a few values and no usable data file.
       var dataset = [114, 129, 133, 115, 82, 97, 91, 105, 98, 59, 77];
 
+      //declare variables
       var xScale = d3
         .scaleBand()
         .domain(d3.range(dataset.length))
@@ -83,6 +85,7 @@
         .attr("width", w)
         .attr("height", h);
 
+      //draw the bars
       svg
         .selectAll("rect")
         .data(dataset)
@@ -125,6 +128,7 @@
           return i + 2009;
         });
 
+      //make chart interactive, resort order on click
       var sortOrder = false;
 
       var sortBars = function () {
