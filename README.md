@@ -1,9 +1,13 @@
 This app is made with React and can be build as a React App and run on localhost after pulling it from github.
 
-On "{nameof page}" the elements functioning in React are visible.
-The Exersize 1 and Exersize 2 of the assignment are there. I as well created some extra elements:
+The elements functioning in React are visible at a deplyed version:
 
-- a D3 version of the Permafrost Line Chart
+https://wherethewildthingsare.netlify.app/
+
+I created some extra elements:
+
+- a Leaflet map showing the paths of the Bowhead whale using GeoJson.
+- a D3 version of the Permafrost Line Chart (still working on the tooltip and legend)
 - an interactive Bar Chart of Ivory Gulls made with D3
 
 Some elements, like the D3 graphs are harder to show nicely in React.
@@ -23,6 +27,6 @@ The goal of this app is to learn Data Visualization by doing new things.
 These are the firsts so far.
 
 1. I have learned to use Highcharts for the first time.
-2. I have worked with Leaflet/ GeoJson for the first time.
+2. I have worked with Leaflet-GeoJson for the first time.
 3. I have made a multiline chart with tooltips in D3 for the first time.
 4. I have used an API to create a data chart for the first time.

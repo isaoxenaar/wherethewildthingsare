@@ -1,3 +1,7 @@
+//Still needs: a legend, to use the quality and time property. Answer questions posed by researcher.
+//What goes wrong: one whale's path does not show up, and one whale apparently swam over land...?
+//Dreams: All the beautifull features that I see in my mind, but still have to learn ;).
+
 import React, { Component } from "react";
 import styled from "styled-components";
 import L from "leaflet";
@@ -35,7 +39,7 @@ class MapBowHead extends Component {
   };
 
   render() {
-    //create a geojson from rawdata
+    //create a geojson from json data
     const uniqueWhales = (array) => {
       const double = {};
       const unique = [];
@@ -108,8 +112,10 @@ class MapBowHead extends Component {
         </Marker>
       );
     });
+
     //logic for the Buttontext
     const listButtonText = this.state.showList ? "Hide" : "Bowhead Paths";
+
     //the big return statement
     return (
       <div>
