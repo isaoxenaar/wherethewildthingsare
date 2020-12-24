@@ -15,6 +15,16 @@ class App extends Component {
           <Exe2 />
           <br />
           <MapBowHead />
+          <br />
+          <img
+            style={{
+              display: "block",
+              marginLeft: "auto",
+              marginRight: "auto",
+            }}
+            src="https://thumbs-prod.si-cdn.com/bHF0uH2-0BrTSPA1NNTXYDhOngo=/1024x596/https://public-media.si-cdn.com/filer/94/71/947197b1-4aba-41da-9f16-9757a9b407ce/2964350117_aefbc5564e_o.jpg"
+            alt="notfound"
+          />
         </main>
       </Provider>
     );

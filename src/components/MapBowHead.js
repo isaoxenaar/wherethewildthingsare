@@ -6,6 +6,8 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import L from "leaflet";
 import { MapContainer, Marker, Popup, TileLayer, GeoJSON } from "react-leaflet";
+import { BasemapLayer, FeatureLayer } from "react-esri-leaflet";
+
 import { data } from "../D3_Html_Charts/rawdata";
 import "../App.css";
 
@@ -128,10 +130,8 @@ class MapBowHead extends Component {
         </BooleanButton>
         {this.state.showList && (
           <MapContainer center={position} zoom={5}>
-            <TileLayer
-              attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            />
+            <BasemapLayer name="DarkGray" />
+
             <GeoJSON
               data={geoJSON}
               style={(feature) => {
