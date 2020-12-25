@@ -131,7 +131,6 @@ class MapBowHead extends Component {
         {this.state.showList && (
           <MapContainer center={position} zoom={5}>
             <BasemapLayer name="DarkGray" />
-
             <GeoJSON
               data={geoJSON}
               style={(feature) => {
