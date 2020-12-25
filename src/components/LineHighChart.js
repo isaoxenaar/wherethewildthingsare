@@ -120,7 +120,7 @@ class LineChart2 extends Component {
               stations in Svalbard.
             </p>
             <h5>
-              Data from:{" "}
+              Data from:
               <a style={{ color: "gray" }} href="https://www.met.no/">
                 Norwegian Meteorological Institute
               </a>
