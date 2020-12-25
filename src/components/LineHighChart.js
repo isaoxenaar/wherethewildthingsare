@@ -40,7 +40,7 @@ class LineChart2 extends Component {
         seriesThreshold: 1,
       },
       title: {
-        text: "Permafrost temprature",
+        text: "Permafrost temperature",
       },
       subtitle: {
         text: "At the 15m, 25m, 40m depths",
@@ -95,19 +95,37 @@ class LineChart2 extends Component {
       return (
         <div>
           <HighchartsReact highcharts={Highcharts} options={options} />
-          <p style={{ color: "grey" }}>
-            At suitable places, temperature measurements in boreholes in
-            permafrost give firm indications of changes in climate. Data from
-            Janssonhaugen show a distinct rise in temperature right down to 40
-            metres. Temperature variations at the ground surface through the
-            year will be both delayed and moderated downwards. At a depth of
-            15–20 metres, temperature variations through the year are balanced
-            out. Changes in the average temperature at the ground surface over
-            several years and decades will be transmitted to greater depths as
-            temperature waves. These measurements are therefore a valuable
-            supplement to more traditional climate data from meteorological
-            stations in Svalbard.
-          </p>
+          <div
+            style={{
+              color: "grey",
+              fontFamily: "Arial",
+              display: "block",
+              marginLeft: "400px",
+              marginRight: "400px",
+            }}
+          >
+            {" "}
+            <h3>What is being monitored?</h3>
+            <p>
+              At suitable places, temperature measurements in boreholes in
+              permafrost give firm indications of changes in climate. Data from
+              Janssonhaugen show a distinct rise in temperature right down to 40
+              metres. Temperature variations at the ground surface through the
+              year will be both delayed and moderated downwards. At a depth of
+              15–20 metres, temperature variations through the year are balanced
+              out. Changes in the average temperature at the ground surface over
+              several years and decades will be transmitted to greater depths as
+              temperature waves. These measurements are therefore a valuable
+              supplement to more traditional climate data from meteorological
+              stations in Svalbard.
+            </p>
+            <h5>
+              Data from:{" "}
+              <a style={{ color: "gray" }} href="https://www.met.no/">
+                Norwegian Meteorological Institute
+              </a>
+            </h5>
+          </div>
         </div>
       );
     }
