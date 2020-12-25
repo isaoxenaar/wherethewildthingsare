@@ -30,8 +30,8 @@ class LineChart2 extends Component {
         panKey: "shift",
         borderColor: "#f5f5dc",
         plotBorderWidth: "5px",
-        plotBorderColor: "#f5f5dc",
-        backgroundColor: "#B0A175",
+        plotBorderColor: "#B0A175",
+        backgroundColor: "#f5f5dc",
         plotShadow: true,
       },
       boost: {
@@ -40,10 +40,10 @@ class LineChart2 extends Component {
         seriesThreshold: 1,
       },
       title: {
-        text: "Highcharts drawing points",
+        text: "Permafrost temprature",
       },
       subtitle: {
-        text: "Using the Boost module",
+        text: "At the 15m, 25m, 40m depths",
       },
       plotOptions: {
         series: {
@@ -69,15 +69,18 @@ class LineChart2 extends Component {
       colors: ["#ff6347", "#FF6600", "#FFC300"],
       series: [
         {
+          name: "15m",
           boostTreshold: 1,
           data: depth[15],
           lineWidth: 1,
         },
         {
+          name: "25m",
           data: depth[25],
           lineWidth: 5,
         },
         {
+          name: "40m",
           boostTreshold: 1,
           data: depth[40],
           lineWidth: 1,
